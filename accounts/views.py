@@ -9,7 +9,7 @@ def login(request):
         if user is None: return render(request,'accounts/login.html',{'error':"Username or Password is incorrect"})
         else :
             auth.login(request, user)
-            return redirect('home')
+            return redirect('upload')
     else: return render(request,'accounts/login.html')
 
 def logout(request):
@@ -27,7 +27,7 @@ def signup(request):
             except User.DoesNotExist:
                 user = User.objects.create_user(request.POST['username'],password=request.POST['password1'])
                 auth.login(request,user)
-                return redirect('home')
+                return redirect('upload')
         else: return render(request,'accounts/signup.html',{'error':"Enter same password in both fields."})
 
     else:

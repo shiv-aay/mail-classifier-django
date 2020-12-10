@@ -19,10 +19,10 @@
         <div class="purple nav-wrapper">
           <!-- <a href="#" class="brand-logo">Logo</a> -->
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'home' %}" title="Home"><i class="large material-icons">home</i></a></li>
             {% if user.is_authenticated %}
-            <li><a href="{% url 'upload' %}">Dashboard</a></li>
             <li><a href="" title="{{user}}"><i class="large material-icons">account_circle</i></a></li>
+            <li><a href="{% url 'upload' %}">Dashboard</a></li>
             <li><a href="javascript:{document.getElementById('logout').submit()}">Logout</a></li>
             {% else %}
             <li><a href="{% url 'login' %}" class="btn-small purple accent-2">Log In</a></li>
