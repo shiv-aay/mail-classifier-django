@@ -1,0 +1,60 @@
+{% extends 'mail_classifier/base.html' %}
+
+{% block content %}
+<style>
+    .main .btn-large{
+        margin: 3% 6%;
+        width: 21%;
+        cursor:default;
+    }
+    .main ul li{
+        display: inline;
+        width: 20%;
+        margin: 0 2.5%;
+    }
+    .main{
+        padding: 0 5%;
+    }
+    hr{
+        margin: 70px 0;
+    }
+</style>
+<div class="main">
+    <a class="btn-large">Upload training data</a>
+    <a class="btn-large">Model selection</a>
+    <a class="btn-large">Demo testing</a>
+    <p class="center">Upload your mails in different folders for classification</p>
+    <ul class="center">
+        <li><a href="" title="Category 1"><i class="large material-icons">folder_open</i></a></li>
+        <li><a href="" title="Category 2"><i class="large material-icons">folder_open</i></a></li>
+        <li><a href="" title="Add more"><i class="large material-icons">create_new_folder</i></a></li>
+        <li><a href="" title="Add more"><i class="large material-icons">create_new_folder</i></a></li>
+    </ul>
+    <ul class="center">
+        <li>Category 1</li>
+        <li>Category 2</li>
+        <li>Add more</li>
+        <li>Add more</li>
+    </ul><hr>
+    <p class="center">Add determinig words for each category (optional)</p>
+    <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s4">
+              <textarea id="textarea1" class="materialize-textarea"></textarea>
+              <label for="textarea1">Enter text...</label>
+            </div>
+            <div class="input-field col s4">
+              <textarea id="textarea1" class="materialize-textarea"></textarea>
+              <label for="textarea1">Enter text...</label>
+            </div>
+            <div class="input-field col s4">
+              <textarea id="textarea1" class="materialize-textarea"></textarea>
+              <label for="textarea1">Enter text...</label>
+            </div>                          
+          </div>
+        </form>
+      </div>
+    <a href="{% url 'train' %}" class="purple right btn-large">Generate Test File</a>
+</div>a
+{% endblock %}

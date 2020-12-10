@@ -1,0 +1,39 @@
+{% extends 'mail_classifier/base.html' %}
+
+{% block content %}
+<style>
+    .s8 a{
+        display: block;
+        margin: 10% 15%;
+    }
+    .s4{
+        height: 60%;
+    }
+    .s4 ul{
+        border: 3px solid white;
+        padding: 5%;
+        border-radius: 5px;
+    }
+    .top-buttons{
+        margin: 3% 6%;
+        width: 21%;
+        cursor:default;
+    }    
+</style>
+<div class="main row">
+    <a class="btn-large top-buttons">Upload training data</a>
+    <a class="btn-large top-buttons">Model selection</a>
+    <a class="btn-large top-buttons">Demo testing</a>    
+    <div class="col s8">
+        <a class="btn-large purple" href="">Upload a sample mail</a>
+        <a class="btn-large purple" href="" class="btn-large">+ Add more</a>
+    </div>
+    <div class="col s4 valign-wrapper">
+        <ul>
+            <li><b>Predicted Category</b></li>
+            <li>one</li>
+            <li>two</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

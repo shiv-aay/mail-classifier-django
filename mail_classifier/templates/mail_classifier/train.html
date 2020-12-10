@@ -1,0 +1,49 @@
+{% extends 'mail_classifier/base.html' %}
+
+{% block content %}
+<style>
+    .main{
+        padding: 0 5%;
+    }
+    .main .btn-large{
+        margin: 3% 6%;
+        width: 21%;
+        cursor:default;
+    }
+    .hp{
+        border: 3px solid white;
+        border-radius: 5px;
+        margin: 20px 0;
+        padding: 15px;
+    }
+</style>
+<div class="main">
+    <a class="btn-large ">Upload training data</a>
+    <a class="btn-large">Model selection</a>
+    <a class="btn-large " href="{% url 'result' %}">Demo testing</a>
+    <a href="" class="btn">Quick Test</a>
+    <p>The preliminary cofidence on prediction is </p>
+    <div class="hp">
+        Model 1 - Hyperparameter 1
+        <form action="#">
+            <p class="range-field">
+              <input type="range" id="hp1" min="0" max="100" />
+            </p>
+        </form>
+    </div>
+    <div class="hp">
+        Model 1 - Hyperparameter 2
+        <form action="#">
+            <p class="range-field">
+              <input type="range" id="hp1" min="0" max="100" />
+            </p>
+        </form>
+    </div>
+    <a href="" class="btn">Quick Test</a>
+    <p>The preliminary cofidence on prediction is </p>    
+</div>
+<script type = "text/javascript"
+src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
+</script>
+{% endblock %}
