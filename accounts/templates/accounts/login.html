@@ -1,0 +1,18 @@
+{% extends 'mail_classifier/base.html' %}
+{% block content %}
+{% if error %}
+{{ error }}
+{% endif %}
+<div class="container">
+<h1 class="center">Login!</h1>
+<form action="{% url 'login' %}" class="container" method="POST">
+  {% csrf_token %}
+  Username : <br>
+  <input type="text" style="color: white;" name="username"><br>
+  Password : <br>
+  <input type="password" style="color: white;" name="password"><br>
+  <br><br>
+  <input type="submit" name="submit" value="Log In" class="btn btn-primary">
+</form>
+</div>
+{% endblock %}
