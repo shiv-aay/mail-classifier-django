@@ -28,7 +28,7 @@
             <li><a href="{% url 'login' %}" class="btn-small purple accent-2">Log In</a></li>
             <li><a href="{% url 'signup' %}" class="btn-small purple accent-2">Sign Up</a></li>
             {% endif %}
-            <form action="{% url 'logout' %}" id="logout" method="post">
+            <form action="{% url 'logout' %}" style="margin: 0;" id="logout" method="post">
               {% csrf_token %}
               <input type="hidden">
             </form>            
