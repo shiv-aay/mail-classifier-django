@@ -10,3 +10,13 @@ def on_rm_error( func, path, exc_info):
     os.unlink( path )
 shutil.rmtree( 'media/extracted/'+request.user.username, onerror = on_rm_error )
 ```
+## For carrying the data across requests, we can use Session (in the same way as PHP)
+```
+# in done():
+request.session['dict_to_save'] = my_dict_to_save
+return redirect('/new/url/to/redirect/to')
+
+# in the new view:
+values_from_session = request.session.pop('dict_to_save', None)
+```
+A better way to store the model and vectorizer for further use is by pickel or joblib

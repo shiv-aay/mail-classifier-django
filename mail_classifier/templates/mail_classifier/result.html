@@ -2,38 +2,52 @@
 
 {% block content %}
 <style>
-    .s8 a{
-        display: block;
-        margin: 10% 15%;
-    }
-    .s4{
+    .s7{
         height: 60%;
     }
-    .s4 ul{
+    .s7 table{
         border: 3px solid white;
         padding: 5%;
         border-radius: 5px;
+        overflow: overlay;
+        position: absolute;
+        top: 150px;
     }
     .top-buttons{
         margin: 3% 6%;
         width: 21%;
         cursor:default;
     }    
+    .s5{
+        margin-top: 80px;
+    }
+    .s5 form{
+        border: 3px solid white;
+        border-radius: 5px;
+        padding: 15px;
+    }
 </style>
 <div class="main row">
-    <a class="btn-large top-buttons">Upload training data</a>
-    <a class="btn-large top-buttons">Model selection</a>
-    <a class="btn-large top-buttons">Demo testing</a>    
-    <div class="col s8">
-        <a class="btn-large purple" href="">Upload a sample mail</a>
-        <a class="btn-large purple" href="" class="btn-large">+ Add more</a>
+    <a class="btn-large top-buttons grey">Upload training data</a>
+    <a class="btn-large top-buttons grey">Model selection</a>
+    <a class="btn-large top-buttons purple accent-2">Testing</a>    
+    <div class="col s5 valign-wrapper">
+        <form method="post" class="container" action="{% url 'result' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="file-field input-field">
+                <div class="btn">
+                  <span>Upload Sample Mails<i class="material-icons right">mail</i></span>
+                  <input type="file" name="test_input">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text" placeholder="No File"><br><br>
+                </div>
+            </div>            
+            <input type="submit" class="right btn-small" />
+        </form>
     </div>
-    <div class="col s4 valign-wrapper">
-        <ul>
-            <li><b>Predicted Category</b></li>
-            <li>one</li>
-            <li>two</li>
-        </ul>
+    <div class="col s7 valign-wrapper">
+
     </div>
 </div>
 {% endblock %}

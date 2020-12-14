@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h2>DATABASE (TEAM DETAILS)</h2>
+
+<table>
+  <tr>
+    <th>MAILS</th>
+    <th>CATEGORY</th>
+  </tr>
+{% for i,j in zipped_data %}
+  <tr>
+    <td>{{ i }}</td>
+    <td>{{ j }}</td>
+  </tr>
+{% endfor %}
+</table>
+
+</body>
+</html>

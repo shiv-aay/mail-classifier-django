@@ -18,6 +18,7 @@ from django.urls import path,include
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +27,8 @@ urlpatterns = [
     path('upload/',views.upload,name='upload'),
     path('train/',views.train,name='train'),
     path('result/',views.result,name='result'),
+    path('train_all/',views.train_all,name='train_all'),
+
 ]
 
 if settings.DEBUG:
