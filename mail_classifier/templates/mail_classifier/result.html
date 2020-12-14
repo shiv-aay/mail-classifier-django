@@ -32,7 +32,7 @@
     <a class="btn-large top-buttons grey">Model selection</a>
     <a class="btn-large top-buttons purple accent-2">Testing</a>    
     <div class="col s5 valign-wrapper">
-        <form method="post" class="container" action="{% url 'result' %}" enctype="multipart/form-data">
+        <form method="post" class="container" action="{% url 'result' %}" target="_blank" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="file-field input-field">
                 <div class="btn">

@@ -20,3 +20,12 @@ return redirect('/new/url/to/redirect/to')
 values_from_session = request.session.pop('dict_to_save', None)
 ```
 A better way to store the model and vectorizer for further use is by pickel or joblib
+
+## Was facing following error when i was using the model more than once at a time just after training
+<i>
+[WinError 32] The process cannot access the file because it is being used by another process
+</i>
+Forgot to close the message files (noob mistake), following line helped
+``` msg.close()```
+After saving the form I was redirecting to a new page, I wanted to open that page in a new tab, hence I added following attribute in the form itself.
+``` target="_blank" ```

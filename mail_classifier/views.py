@@ -50,6 +50,7 @@ def extract(f):
                 i+=1
     y = msg_message[msg_message.find("Subject"):]
     x =y[y.find("\n"):]
+    msg.close()
     return msg_sender, msg_date, msg_subj, x
 
 def test_input(parent_dir):
