@@ -277,6 +277,7 @@ def train(request):
 @login_required(login_url="/accounts/login")
 def train_all(request):
     if request.method == 'POST':
+        kernel=None        
         unzipped_files='media/extracted/'+request.user.username            
         data=create_email_table(unzipped_files)        
         if request.POST['vectorizer']==1: X_train, X_test, y_train, y_test, vectorizer = tf_idf_input_generator(data)
@@ -290,7 +291,7 @@ def train_all(request):
         elif model=="svc":
             acs, classifier = SVC_model(X_train, y_train, X_test, y_test, C = int(request.POST['h1'])/100, degree = int(request.POST['h2']), kernel = request.POST['group1'], gamma = request.POST['group2'])
         elif model=="xgb":
-            acs, classifier = XGB_model(X_train, y_train, X_test, y_test, n_estimators = int(request.POST['h1']), max_depth=int(request.POST['h2']), gamma = int(request.POST['h4'])/100, learning_rate = int(request.POST['h3'])/1000)
+            acs, classifier = XGB_model(X_train, y_train, X_test, y_test, n_estimators = int(request.POST['h1']), max_depth=int(request.POST['h2']), gamma = int(request.POST['h4'])/100, learning_rate = int(request.POST['h3'])/1000)        
         elif model=="gpm":
             if request.POST['group1']==0: kernel=1*RBF()
             elif request.POST['group1']==1: kernel=1*DotProduct()
@@ -338,5 +339,8 @@ def result(request):
         return render(request, 'mail_classifier/predictions.html', {
             'zipped_data': zipped_data
         })
-
-    return render(request,'mail_classifier/result.html') 
+    try:
+        model = joblib.load(request.user.username+'_model.pkl')
+        return render(request,'mail_classifier/result.html',{'model':True})
+    except:
+        return render(request,'mail_classifier/result.html') 

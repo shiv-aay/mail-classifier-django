@@ -30,8 +30,8 @@
 <div class="main row">
     <a class="btn-large top-buttons grey">Upload training data</a>
     <a class="btn-large top-buttons grey">Model selection</a>
-    <a class="btn-large top-buttons purple accent-2">Testing</a>    
-    <div class="col s5 valign-wrapper">
+    <a class="btn-large top-buttons purple accent-2">Testing</a>   
+    {% if model %} 
         <form method="post" class="container" action="{% url 'result' %}" target="_blank" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="file-field input-field">
@@ -45,9 +45,9 @@
             </div>            
             <input type="submit" class="right btn-small" />
         </form>
-    </div>
-    <div class="col s7 valign-wrapper">
-
-    </div>
+        {% else %}
+        <h4 class="center">Currently you have no trained model</h4>
+        <h3 class="center"><a href="{% url 'upload' %}">Train your model from here</a></h3>
+    {% endif %}
 </div>
 {% endblock %}
