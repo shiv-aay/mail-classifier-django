@@ -1,6 +1,5 @@
 db.sqlite3
 mail_classifier/secret_settings.py
-LICENSE
 /media
 *.csv
 *.pkl
