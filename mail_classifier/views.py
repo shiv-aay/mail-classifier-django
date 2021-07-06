@@ -5,9 +5,7 @@ import zipfile
 import os, shutil, stat
 from .preprocess import *
 import extract_msg
-from sklearn import datasets
 import xgboost as xgb
-from sklearn import preprocessing
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.gaussian_process import GaussianProcessClassifier
 from sklearn.model_selection import train_test_split
@@ -20,8 +18,6 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn import svm
 import joblib 
 import csv
-from django.conf import settings
-from django.http import HttpResponse, Http404
 
 def home(request):
     return render(request,'mail_classifier/home.html')
@@ -202,9 +198,7 @@ def GP_model(X_train, y_train, X_test, y_test, kernel=1*DotProduct(), n_restarts
 def ease_your_work(data):
     X_train_tf, X_test_tf, y_train_tf, y_test_tf, tf_vectorizer = tf_idf_input_generator(data)
     X_train_cv, X_test_cv, y_train_cv, y_test_cv, count_vectorizer= count_vec_converter(data)
-    
-    print("\n\n\n\n\n\nhere train\n\n\n\n",X_train_cv.size,X_train_cv.shape)
-    
+        
     random_forest_acc_tf, random_forest_classifier_tf = random_forest_model(X_train_tf, y_train_tf, X_test_tf, y_test_tf)
     random_forest_acc_cv, random_forest_classifier_cv = random_forest_model(X_train_cv, y_train_cv, X_test_cv, y_test_cv)
     
@@ -257,7 +251,6 @@ def upload(request):
 
         unzipped_files='media/extracted/'+request.user.username            
         data=create_email_table(unzipped_files)
-        print("\n\n\n\n\n\n\nhere")
         best_model,vectorizer,accuracy = ease_your_work(data)
         joblib.dump(best_model, request.user.username+'_model.pkl')
         joblib.dump(vectorizer, request.user.username+'_vectorizer.pkl')
@@ -299,7 +292,6 @@ def train_all(request):
             elif request.POST['group1']==3: kernel=1*RationalQuadratic()
             elif request.POST['group1']==4: kernel=1*WhiteKernel()
             acs, classifier = GP_model(X_train, y_train, X_test, y_test, n_restarts_optimizer = int(request.POST['h1']), max_iter_predict = int(request.POST['h2']), multi_class = request.POST['group2'], kernel = kernel)
-        else : print ("\n\n\n\nNo model caught\n\n\n\n\n")  
         joblib.dump(classifier, request.user.username+'_model.pkl') 
         return render(request,'mail_classifier/train_all.html',{'acs':round(acs,4)*100})
 
